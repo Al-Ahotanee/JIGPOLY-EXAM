@@ -58,7 +58,7 @@ Before pushing, confirm that `.env` files, database URLs, passwords, and real up
 
 ## 3. Deploy the web service on Render
 
-In Render, select **New → Web Service**, connect the GitHub repository, and choose the **Free** plan. Because this repository includes a `Dockerfile`, select Docker/runtime autodetection or Docker explicitly. Render will build the image, install PHP's PostgreSQL extension, and serve Apache on port 80.
+In Render, select **New → Web Service**, connect the GitHub repository, and choose the **Free** plan. Because this repository includes a `Dockerfile`, select Docker/runtime autodetection or Docker explicitly. The Dockerfile installs the PostgreSQL client development headers (`libpq-dev`) before compiling PHP's `pdo_pgsql` extension, then serves Apache on port 80.
 
 Set only the following environment variables in Render. The `DATABASE_URL` value must be the Neon connection string copied from Neon. Session security automatically follows `APP_ENV=production`.
 
@@ -119,7 +119,7 @@ If the page loads but appears slow on its first visit, the Free Render service m
 
 ## Change summary
 
-The delivered code changes the database from MySQL to Neon PostgreSQL, replaces all former academic-unit labels with colleges throughout the schema and user interface, standardizes the product branding as JIGPOLY Polytechnic, allows deployment with only `DATABASE_URL` and `APP_ENV`, automatically seeds initial user credentials, adds a Docker deployment path for Render, adds a health endpoint, and prevents raw SQL errors from being returned to users.
+The delivered code changes the database from MySQL to Neon PostgreSQL, replaces all former academic-unit labels with colleges throughout the schema and user interface, standardizes the product branding as JIGPOLY Polytechnic, allows deployment with only `DATABASE_URL` and `APP_ENV`, automatically seeds initial user credentials, installs the required PostgreSQL build headers in Docker, adds a Docker deployment path for Render, adds a health endpoint, and prevents raw SQL errors from being returned to users.
 
 You should review the seed names, policies, academic units, and incident workflow with JIGPOLY Polytechnic's authorized administrators before production use.
 

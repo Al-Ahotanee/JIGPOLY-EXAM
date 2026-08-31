@@ -1,6 +1,6 @@
 FROM php:8.3-apache
 
-# Install PostgreSQL development headers required to compile PDO_PGSQL.
+# PDO_PGSQL needs libpq headers and pg_config during compilation.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libpq-dev \
     && docker-php-ext-install pdo_pgsql \
@@ -8,13 +8,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY . /var/www/html/
-
 RUN mkdir -p /var/www/html/uploads \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html
-
 EXPOSE 80
-
 CMD ["apache2-foreground"]
