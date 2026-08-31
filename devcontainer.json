@@ -1,0 +1,32 @@
+{
+  "name": "JIGPOLY OIRMF",
+  "image": "mcr.microsoft.com/devcontainers/php:8.3-apache",
+  "features": {
+    "ghcr.io/devcontainers/features/postgres:1": {}
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/var/www/html,type=bind",
+  "workspaceFolder": "/var/www/html",
+  "forwardPorts": [80, 5432],
+  "portsAttributes": {
+    "80": {
+      "label": "Web Application",
+      "onAutoForward": "openBrowser"
+    },
+    "5432": {
+      "label": "PostgreSQL Database",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "sudo docker-php-ext-install pdo_pgsql",
+  "postStartCommand": "sudo service apache2 start",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}

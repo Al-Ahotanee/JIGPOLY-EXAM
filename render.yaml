@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: jigpoly-oirmf
+    runtime: docker
+    plan: free
+    healthCheckPath: /api.php?action=health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: APP_ENV
+        value: production
