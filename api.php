@@ -277,7 +277,7 @@ try {
 
         case 'login':
             validateCSRF($pdo);
-            $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND is_active = 1");
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND is_active = TRUE");
             $stmt->execute([$input['email']]);
             $user = $stmt->fetch();
             
@@ -603,7 +603,7 @@ try {
                 $pdo->prepare("INSERT INTO incident_evidence (incident_id, uploaded_by, original_name, stored_name, file_path, mime_type, file_size) VALUES (?, ?, ?, ?, ?, ?, ?)")->execute([$inc_id, $user['id'], $original_name, $evidence, 'uploads/'.$evidence, $mime_type, $uploaded_size]);
             }
             
-            $officers = $pdo->query("SELECT id FROM users WHERE role = 'exam_officer' AND is_active = 1")->fetchAll();
+            $officers = $pdo->query("SELECT id FROM users WHERE role = 'exam_officer' AND is_active = TRUE")->fetchAll();
             foreach($officers as $off) {
                 notify($pdo, (int)$off['id'], 'incident_reported', 'New Incident Alert', "Incident {$ref} was reported by {$user['full_name']}.");
             }
@@ -707,7 +707,7 @@ try {
                 'departments' => $pdo->query("SELECT id, name, code, college_id FROM departments")->fetchAll(), 
                 'colleges' => $pdo->query("SELECT id, name, code FROM colleges")->fetchAll(), 
                 'courses' => $pdo->query("SELECT id, code, title, department_id FROM courses")->fetchAll(),
-                'committee_members' => $pdo->query("SELECT id, full_name, staff_id FROM users WHERE role = 'committee' AND is_active = 1")->fetchAll()
+                'committee_members' => $pdo->query("SELECT id, full_name, staff_id FROM users WHERE role = 'committee' AND is_active = TRUE")->fetchAll()
             ]]);
             break;
 

@@ -10,8 +10,8 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- React & Babel -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -147,7 +147,7 @@
                             className={`absolute inset-0 bg-gradient-to-br ${slide.bg} transition-opacity duration-1000 ease-in-out ${index === current ? 'opacity-100' : 'opacity-0'}`}
                         >
                             {/* Abstract Overlays */}
-                            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] mix-blend-overlay"></div>
+                            <div className="absolute inset-0 bg-[url('noise.svg')] opacity-[0.04] mix-blend-overlay"></div>
                             <div className="absolute -top-40 -right-40 w-96 h-96 bg-accent rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-pulse"></div>
                             <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-400 rounded-full mix-blend-screen filter blur-[100px] opacity-20"></div>
                         </div>
@@ -274,7 +274,7 @@
 
         const CTASection = () => (
             <section className="relative py-24 bg-primary overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay"></div>
+                <div className="absolute inset-0 bg-[url('noise.svg')] opacity-[0.05] mix-blend-overlay"></div>
                 <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-accent/40 to-transparent"></div>
                 <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
                     <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Ready to access the system?</h2>
